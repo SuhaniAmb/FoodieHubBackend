@@ -106,6 +106,30 @@ router.post('/fetch_all_fooditems_by_category_id', function(req,res){
 })
 
 
+router.post('/student_sign_in', function(req,res){
+            // console.log('RESULTTTTTTTTTTTTTTTTTTTT', req.body)
+    pool.query("select * from students where mobileno=?",[req.body.mobileno],function(error,result){
+        if(error)
+        {
+            console.log('ERRORRRRRRRRRRRRRRRRRR', error)
+            res.status(500).json({status:false, message:'Database Error Pls Contact Backend Team........'})
+        }
+        else
+        {
+            if(result.length==1)
+            {
+              console.log('DATAAAAAAAAAAAAAAAAAAAAAA', result)
+              res.status(200).json({status:true, message:'Success', data:result[0]})
+            }
+            else
+            {
+              res.status(200).json({status:false, message:'You are not registered yet......Pls Contact Backend Administrator', data:[0]})
+            }
+        }
+    })
+})
+
+
 
 
 module.exports = router;

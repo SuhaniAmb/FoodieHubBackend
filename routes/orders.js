@@ -38,7 +38,6 @@ router.post('/submit_picture',upload.any('picture'), function(req, res, next) {
 
 
 
-
 router.post('/fetch_all_picture', function(req, res, next) {
   try
   {
