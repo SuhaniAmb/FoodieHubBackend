@@ -33,7 +33,7 @@ router.post('/submit_fooditems',upload.single('picture'),function(req,res){
 
 
 
-router.get('/fetch_all_fooditems', verifyToken, function(req,res){
+router.get('/fetch_all_fooditems', function(req,res){
     res.setHeader('Cache-Control', 'no-store');
     pool.query("select F.*, (select C.categoryname from foodcategory C where C.categoryid=F.categoryid) as categoryname, (select B.branchname from branch B where B.branchid=F.branchid) as branchname from fooditems F",function(error,result){
         if(error)
