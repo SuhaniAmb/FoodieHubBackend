@@ -1,10 +1,13 @@
-var mysql=require('mysql')
-var pool=mysql.createPool({
-    host:'localhost',
-    user:'root',
-    password:'1234',
-    database:'hungersbuddy',
-    multipleStatements:'true',
-    connectionLimit:100,
+var mysql = require('mysql')
+
+var pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    multipleStatements: true,
+    connectionLimit: 100,
 })
-module.exports=pool
+
+module.exports = pool
